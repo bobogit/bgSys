@@ -1,2 +1,0 @@
-# bgSys
-springcloud/springboot
