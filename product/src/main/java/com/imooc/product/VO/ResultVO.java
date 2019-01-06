@@ -4,6 +4,7 @@ import lombok.Data;
 
 /**
  * HTTP返回外层对象
+ *
  * @param <T>
  */
 @Data

@@ -1,5 +1,6 @@
 package com.imooc.product.repository;
 
+import com.google.common.collect.Lists;
 import com.imooc.product.ProductApplicationTests;
 import com.imooc.product.dataobject.ProductInfo;
 import org.junit.Assert;
@@ -22,5 +23,18 @@ public class ProductInfoRepositoryTest extends ProductApplicationTests {
 
         List<ProductInfo> productList = productInfoRepository.findByProductStatus(0);
         Assert.assertTrue(productList.size() > 0);
+    }
+
+    @Test
+    public void findByProductIdIn() {
+
+        List<String> productIdList = Lists.newArrayList();
+        productIdList.add("157875196366160022");
+        productIdList.add("157875227953464068");
+        productIdList.add("164103465734242707");
+
+        List<ProductInfo> list = productInfoRepository.findByProductIdIn(productIdList);
+        Assert.assertTrue(list.size() > 0);
+
     }
 }

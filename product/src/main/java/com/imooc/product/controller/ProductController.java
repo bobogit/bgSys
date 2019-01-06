@@ -1,6 +1,7 @@
 package com.imooc.product.controller;
 
 import com.google.common.collect.Lists;
+import com.imooc.product.dto.CartDTO;
 import com.imooc.product.VO.ProductInfoVO;
 import com.imooc.product.VO.ProductVO;
 import com.imooc.product.VO.ResultVO;
@@ -44,7 +45,7 @@ public class ProductController {
 
             List<ProductInfoVO> productInfoVOList = Lists.newArrayList();
             for (ProductInfo productInfo : productInfoList) {
-                if(productInfo.getCategoryType() == category.getCategoryType()){
+                if (productInfo.getCategoryType() == category.getCategoryType()) {
                     ProductInfoVO productInfoVO = new ProductInfoVO();
                     BeanUtils.copyProperties(productInfo, productInfoVO);
                     productInfoVOList.add(productInfoVO);
@@ -55,6 +56,22 @@ public class ProductController {
         }
 
         return ResultVOUtil.success(productVOList);
+    }
+
+    /**
+     * 获取商品列表(给订单服务使用)
+     *
+     * @param productIdList
+     * @return
+     */
+    @PostMapping("/listForOrder")
+    public List<ProductInfo> listForOrder(@RequestBody List<String> productIdList) {
+        return productService.findList(productIdList);
+    }
+
+    @PostMapping("/decreaseStock")
+    public void decreaseStock(@RequestBody List<CartDTO> cartDTOList) {
+        productService.decreaseStock(cartDTOList);
     }
 
 }

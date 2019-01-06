@@ -13,6 +13,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Autowired
     ProductCategoryRepository productCategoryRepository;
+
     @Override
     public List<ProductCategory> findByCategoryTypeIn(List<Integer> categroyTypeList) {
         return productCategoryRepository.findByCategoryTypeIn(categroyTypeList);

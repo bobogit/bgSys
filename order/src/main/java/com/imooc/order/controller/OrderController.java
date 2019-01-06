@@ -1,14 +1,19 @@
 package com.imooc.order.controller;
 
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.imooc.order.VO.ResultVO;
+import com.imooc.order.client.ProductClient;
 import com.imooc.order.convert.OrderForm2OrderDTOConvert;
+import com.imooc.order.dataobject.OrderDetail;
+import com.imooc.order.dataobject.ProductInfo;
 import com.imooc.order.dto.OrderDTO;
 import com.imooc.order.enums.ResultEnmu;
 import com.imooc.order.exception.OrderException;
 import com.imooc.order.form.OrderForm;
 import com.imooc.order.service.OrderService;
 import com.imooc.order.utils.ResultVOUtil;
+import com.netflix.discovery.converters.Auto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
@@ -18,7 +23,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("order")
@@ -45,7 +52,7 @@ public class OrderController {
         // orderForm -> orderDTO
         OrderDTO orderDTO = OrderForm2OrderDTOConvert.convert(orderForm);
         if(CollectionUtils.isEmpty(orderDTO.getOrderDetailList())){
-            log.error("[创建订单]购物车信息为空");
+            log.error("[创建订单]购物车信息为空");//
             throw new OrderException(ResultEnmu.CART_EMPTY);
         }
 

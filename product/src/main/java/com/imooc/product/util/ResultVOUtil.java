@@ -6,10 +6,11 @@ public class ResultVOUtil {
 
     /**
      * 返回成功对象
+     *
      * @param data
      * @return
      */
-    public static ResultVO success(Object data){
+    public static ResultVO success(Object data) {
         ResultVO vo = new ResultVO();
         vo.setCode(0);
         vo.setMsg("SUCCESS");
