@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: order
+#  datasource:
+#    driver-class-name: com.mysql.jdbc.Driver
+#    username: cloud-user
+#    password: 123456
+#    url: jdbc:mysql://117.143.62.210:13306/spring-cloud-db?characterEncoding=utf-8&useSSL=false
+
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: config    #config-server定义的应用名 application.yml->spring.application.name
+      profile: dev
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
